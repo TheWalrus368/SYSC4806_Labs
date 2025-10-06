@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Address Books</title>
+</head>
+<body>
+<h1>All Address Books</h1>
+<ul>
+    <li th:each="book : ${addressBooks}">
+        <a th:href="@{/addressbooks/{id}(id=${book.id})}">
+            AddressBook [[${book.id}]] (buddies: [[${book.bookSize()}]])
+        </a>
+    </li>
+</ul>
+</body>
+</html>
