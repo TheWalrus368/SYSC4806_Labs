@@ -17,6 +17,6 @@ public class WebController {
     public String getAddressBook(@PathVariable Long id, Model model) {
         AddressBook ab = repository.findById(id).orElseThrow();
         model.addAttribute("addressBook", ab);
-        return "addressbook"; // looks for templates/addressbook.html
+        return "addressbook";
     }
 }

@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8" />
     <title>Address Book</title>
+    <script src="/app.js" defer></script>
 </head>
 <body>
-<h1>Address Book</h1>
-<ul>
-    <li th:each="buddy : ${addressBook.buddies}"
-        th:text="${buddy.name} + ' - ' + ${buddy.address}">
+<h1>Address Book [[${addressBook.id}]]</h1>
+
+<ul id="buddies-list">
+    <li th:each="buddy : ${addressBook.buddies}">
+        [[${buddy.name}]] - [[${buddy.address}]]
     </li>
 </ul>
+
+<hr/>
+
+<h2>Add a New Buddy</h2>
+<form id="add-buddy-form"
+      th:action="@{/addressbooks/{id}/buddies(id=${addressBook.id})}"
+      method="post">
+    <p>
+        <label for="name">Name:</label>
+        <input id="name" name="name" type="text" required />
+    </p>
+    <p>
+        <label for="address">Address:</label>
+        <input id="address" name="address" type="text" required />
+    </p>
+    <button type="submit">Add Buddy</button>
+</form>
+
+<p><a th:href="@{/}">Back to Home</a></p>
+
+<noscript><p><em>JavaScript is disabled—form posts normally and server re-renders.</em></p></noscript>
 </body>
 </html>

@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8" />
     <title>All Address Books</title>
+    <script src="/app.js" defer></script>
 </head>
 <body>
+<h1>Create a New Address Book</h1>
+
+<form id="create-ab-form" th:action="@{/addressbooks}" method="post">
+    <button type="submit">Create Empty Address Book</button>
+</form>
+
+<hr/>
+
 <h1>All Address Books</h1>
-<ul>
+<ul id="books-list">
     <li th:each="book : ${addressBooks}">
         <a th:href="@{/addressbooks/{id}(id=${book.id})}">
             AddressBook [[${book.id}]] (buddies: [[${book.bookSize()}]])
         </a>
     </li>
 </ul>
+
+<noscript><p><em>JavaScript is disabled—forms still work (server renders the next page).</em></p></noscript>
 </body>
 </html>
